@@ -33,11 +33,11 @@ backend
 [mysql]
 3.8.238.213
 
-[naszaaplikacja]
+[our_app]
 35.176.167.171
 
-[naszaaplikacja_mysql]
+[our_app_mysql]
 35.176.167.171
 
-[naszaaplikacja_loadbalancer]
+[our_app_loadbalancer]
 35.176.167.171

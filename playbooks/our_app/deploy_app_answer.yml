@@ -1,12 +1,12 @@
-- hosts: naszaaplikacja
+- hosts: our_app
 
   become: true
 
   #variables usefull for templating apache and app
   vars:
-    katalog_glowny: /var/www/szkolenie.pl
-    katalog_aplikacji: "{{ katalog_glowny }}/aplikacja"
-    log_dir: "{{ katalog_glowny }}/logs"
+    web_dir: /var/www/szkolenie.pl
+    app_dir: "{{ web_dir }}/aplikacja"
+    log_dir: "{{ web_dir }}/logs"
     port: 5081
 
   pre_tasks: []
@@ -17,68 +17,70 @@
         pkg:
           - apache2
           - libapache2-mod-wsgi
+      tags:
+        - first_tag
 
-    - name: 'zainstaluj aplikacje apache2 i pozostale pakiety przy pomocy with_items'
+    - name: 'install apache2, libapache2-mod-wsgi python-dev with LOOP'
       apt: 
         name: "{{ item }}"
       loop:
         - apache2
         - libapache2-mod-wsgi
-          #- libapache2-mod-wsgi-py3 #dla python3
+          #- libapache2-mod-wsgi-py3 #python3
         - python-dev
 
-#    - git:
-#        repo: https://github.com/sirkubax/naszaaplikacja.git
-#        dest: "{{ katalog_glowny }}"
-#        force: yes
-#      name: 'klonuj repozytorium aplikacji'
-#
-#    - pip: 
-#        requirements: "{{ katalog_aplikacji }}/requirements.txt"
-#        virtualenv: "{{ katalog_aplikacji }}/venv"
-#      name: 'zainicjalizuj virtualenv i zainstaluj zaleznosci' 
-#
-#    - name: 'wgraj definicje virtualhost naszaaplikacja.apache.conf jako template'
-#      template:
-#          src: naszaaplikacja.apache.conf
-#          dest: /etc/apache2/sites-available/
-#      backup: True
-#
-#    - name: 'konfiguruj apache do nasluchiwania na wybranym porcie'
-#      lineinfile: 
-#        dest: /etc/apache2/ports.conf
-#        line: "Listen {{ port }}"
-#        regexp: "^Listen {{ port }}"
-#  
-#    - name: 'wlacz virtualhost'
-#      shell: a2ensite {{ item }}
-#      args:
-#        creates: /etc/apache2/sites-enabled/{{ item }}
-#      loop: 
-#        - naszaaplikacja.apache.conf
-#
-#    - name: 'Wgraj sparametryzowany naszaaplikacja.wsgi (jako template)'
-#      template:
-#          src: naszaaplikacja.wsgi
-#          dest: "{{ katalog_aplikacji }}"
-#      backup: True
-#
-#    - name: 'Wgraj sparametryzowany config.cfg (jako template)'
-#      template:
-#          src: config.cfg
-#          dest: "{{ katalog_aplikacji }}"
-#      backup: True
-#
-#    - name: 'utworz katalog na logi'
-#      file:
-#        state: directory
-#        path: "{{ log_dir }}"
-#        owner: www-data
-#        group: www-data
-#        mode: 0755
-#
-#    - name: 'restart apache'
-#      service:
-#        name: apache2
-#        state: restarted
-#
+    - git:
+        repo: https://github.com/sirkubax/flask-app.git
+        dest: "{{ web_dir }}"
+        force: yes
+      name: 'clone git repo'
+
+    - pip: 
+        requirements: "{{ app_dir }}/requirements.txt"
+        virtualenv: "{{ app_dir }}/venv"
+      name: 'initialize venv and install dependencies'
+
+    - name: 'deploy virtualhost our_app.apache.conf as a template'
+      template:
+          src: our_app.apache.conf
+          dest: /etc/apache2/sites-available/
+          backup: True
+
+    - name: 'deploy our_app.wsgi as a template'
+      template:
+          src: our_app.wsgi
+          dest: "{{ app_dir }}"
+          backup: True
+
+    - name: 'wlacz virtualhost'
+      shell: a2ensite {{ item }}
+      args:
+        creates: /etc/apache2/sites-enabled/{{ item }}
+      loop: 
+        - our_app.apache.conf
+
+    - name: 'configure apache to listen on proper port'
+      lineinfile: 
+        dest: /etc/apache2/ports.conf
+        line: "Listen {{ port }}"
+        regexp: "^Listen {{ port }}"
+  
+    - name: 'deploy config.cfg as a template'
+      template:
+        src: config.cfg.example
+        dest: "{{ app_dir }}/config.cfg"
+        backup: True
+
+    - name: 'create log dir'
+      file:
+        state: directory
+        path: "{{ log_dir }}"
+        owner: www-data
+        group: www-data
+        mode: 0755
+
+    - name: 'restart apache'
+      service:
+        name: apache2
+        state: restarted
+
