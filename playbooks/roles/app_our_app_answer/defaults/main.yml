@@ -1,0 +1,4 @@
+web_dir: /var/www/szkolenie.pl
+app_dir: "{{ web_dir }}/aplikacja"
+log_dir: "{{ web_dir }}/logs"
+port: 5081

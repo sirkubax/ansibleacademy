@@ -1,0 +1,9 @@
+- hosts: our_app
+
+  become: true
+
+  pre_tasks: []
+
+  roles:
+    - app_our_app_answer
+
