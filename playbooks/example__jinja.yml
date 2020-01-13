@@ -1,0 +1,17 @@
+---
+- hosts: all
+
+  vars:
+    some_var: 1234
+
+  var_files:
+    - {{ custom_env }}.yaml
+    - {{ ansible_os }}.yaml
+
+  tasks:
+    - name: print to screen
+      debug:
+        msg: "{{ some_var }} {{ custom_env }} {{ ansible_os }}"
+
+
+

@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+
+  vars:
+    our_dict:
+      x: 999
+ 
+
+  tasks:
+  - name: "set first fact" 
+    set_fact:
+      our_dict: 
+        a: "{{ ansible_hostname }}"
+  
+  - name: "print first fact"
+    debug: 
+        msg: "{{ our_dict }}"
+  
+  - name: "set fact again - is it overriden?'
+    set_fact:
+      our_dict: 
+        b: 2
+        c: 3
+  
+  - name: "print second fact'
+    debug: msg="{{ our_dict }}"
+

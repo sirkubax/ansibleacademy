@@ -1,0 +1,49 @@
+---
+- hosts: apache
+  gather_facts: True
+
+- { hosts: mysql, gather_facts: False }
+
+- hosts: all
+  gather_facts: smart
+  become: True
+
+  vars:
+    some_var: 1234
+
+  #this is a comment
+  
+  pre_tasks: []
+
+  roles:
+    - sys_debug
+    - { role: sys_init_common, become: True, tags: ['init_commom'] }
+    - role: sys_manage_keys
+      become: True
+      register: our_var
+
+  tasks:
+    - ping:
+      ignore_errors: True
+
+    - name: restart apache
+      service: 
+        name: apache2
+        state: restarted
+        enabled: True
+      register: restart_result
+
+    - name: print to screen
+      debug:
+        msg: "{{ some_var }}"
+
+    - name: print to screen
+      include_role: 
+        name: sys_debug
+
+  handlers:
+    - name: restart apache
+      ping:
+
+  post_tasks: []
+

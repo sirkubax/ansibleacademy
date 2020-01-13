@@ -1,0 +1,45 @@
+---
+- hosts: apache
+
+  tasks:
+  - name: update cache 
+    apt: 
+      update_cache: yes 
+      cache_valid_time: 7200
+    changed_when: False
+    become: True
+
+  - name: install packages
+    apt: 
+      pkg:
+        - apache2
+        - htop
+        - dstat
+    become: True
+
+  - name: Wait for instances to listen on port 80
+    wait_for: state=started host=localhost port=80 timeout=15 delay=5
+
+  - name: create file directory 
+    file: 
+      path: "~/training_playbooks_{{ some_username }}"
+      state: directory
+      mode: 0775
+    vars:
+      some_username: training_example01
+
+  - name: create file directory with lookup
+    file: 
+      path: "~/training_playbooks_{{ some_username }}"
+      state: directory
+      mode: 0775
+    vars:
+      some_username: "{{ lookup('pipe', 'whoami') }}"
+
+  - name: create file /tmp/usernameXX with a content OK
+    copy:
+      dest: "/tmp/{{ some_username }}"
+      content: "OK"
+    vars:
+      some_username: "{{ lookup('pipe', 'whoami') }}"
+      

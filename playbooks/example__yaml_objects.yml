@@ -1,0 +1,41 @@
+---
+my_list:
+  - first_element
+  - second_element
+  - third_element
+
+my_list_different_style: [ first_element, second_element, third_element ]
+
+#mappings
+my_dict:
+  first_key: value_key_A
+  second_key: value_key_B
+  third_key: value_key_C
+
+my_dict_different_style: { first_key: value_key_A, second_key, value_key_B, third_key, value_key_C }
+
+my_list_of_dict:
+  - taskA: valueA
+    become: True
+    user: john
+  - taskB: valueB
+    become: False
+    user: training
+
+my_list_of_dict_different_style:
+  - { taskA: valueA, become: True, user: john }
+  - { taskB: valueB, become: False, user: training }
+
+my_list_of_dict_different_style_more: [ { taskA: valueA,, become: True, user: john }, { taskB: valueB, become: False, user: training } ]
+
+
+empty_list: []
+empty_dict: {}
+
+
+dict_in_a_dict:
+  object:
+    parameterA: valueA
+    parameterB: valueB
+
+dict_in_a_dict_different_style: { object: { parameterA: valueA, parameterB: valueB } }
