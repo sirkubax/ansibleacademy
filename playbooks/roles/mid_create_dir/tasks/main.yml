@@ -1,0 +1,11 @@
+---
+
+- name: "create directory"
+  file:
+    state: directory
+    mode: 0754
+    path: "~/training_roles{{ kimjestem }}"
+  vars:
+    kimjestem: "{{ lookup('pipe', 'whoami') }}"
+
+

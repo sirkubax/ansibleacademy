@@ -1,0 +1,33 @@
+---
+- hosts: apache
+
+  #vars_files are better, but I want to present pre_tasks example
+  #vars_files:                               
+  #  - ["{{ system_version_file }}"]       
+  #  - ["{{ system_version_file }}_vault"] 
+  
+  vars:
+    vars_files_var: ["vars/training.yml", "vars/training_vault.yml"]
+
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_items: "{{ vars_files_var }}"
+      tags:
+          - always
+
+  tasks:
+    - name: "show time"
+      shell: date
+
+    - name: "get username"
+      set_fact:
+          whoamihere: "{{ lookup('pipe', 'whoami') }}"
+      tags:
+          - always
+
+  roles:
+    - some_role
+    - { role: sys_init_common, become: True, when: "inventory_hostname == groups['apache'][0]" }
+      #- { role: geerlingguy.apache_example }
+    - { role: mid_create_dir, tags: katalog }
+
