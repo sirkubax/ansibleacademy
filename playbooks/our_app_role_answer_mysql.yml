@@ -1,0 +1,19 @@
+- hosts: our_app_mysql
+
+  become: true
+  pre_tasks: []
+
+  roles:
+    - { role: geerlingguy.mysql_example }
+
+
+
+- hosts: our_app
+
+  become: true
+
+  pre_tasks: []
+
+  roles:
+    - app_our_app_answer
+

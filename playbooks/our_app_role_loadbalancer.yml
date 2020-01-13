@@ -1,0 +1,24 @@
+- hosts: our_app_loadbalancer
+
+#  vars:
+#    web_dir: /var/www/szkolenie.pl
+#    app_dir: "{{ web_dir }}/aplikacja"
+#    log_dir: "{{ web_dir }}/logs"
+#    #port: 5081
+#    lista_portow: [5081, 5082]
+#
+  become: true
+
+  pre_tasks: []
+
+  roles:
+    - some_loadbalancer
+
+#- hosts: our_app
+#  become: true
+#
+#  pre_tasks: []
+#
+#  roles:
+#    - app_our_app_answer
+#
