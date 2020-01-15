@@ -20,8 +20,8 @@
   - name: Wait for instances to listen on port 80
     wait_for: state=started host=localhost port=80 timeout=15 delay=5
 
-#  - name: create file directory 
-#    #use proper module to create directory
+#  - name: create file 
+#    #use proper module to create file
 #
 #  - name: create file /tmp/usernameXX with a content OK
 #    #possible modules: shell, template, copy

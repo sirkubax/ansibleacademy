@@ -12,7 +12,7 @@ my_dict:
   second_key: value_key_B
   third_key: value_key_C
 
-my_dict_different_style: { first_key: value_key_A, second_key, value_key_B, third_key, value_key_C }
+my_dict_different_style: { first_key: value_key_A, second_key: value_key_B, third_key: value_key_C }
 
 my_list_of_dict:
   - taskA: valueA
