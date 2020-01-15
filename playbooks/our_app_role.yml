@@ -2,11 +2,6 @@
 
   become: true
 
-  #vars:
-  #  katalog_aplikacji: /var/www/szkolenie
-  #  log_dir: /var/www/szkolenie/logs/
-  #  port: 5001
-
   pre_tasks: []
 
   roles:

@@ -1,0 +1,43 @@
+- hosts: our_app
+
+  tasks:
+  - name: print that the weather is good 
+    shell: echo 'the wheather is nice today'
+    register: yourvariable
+
+  - name: confirmed
+    shell: echo 'the wheather is OK'
+    when:
+      - '"is nice" in yourvariable.stdout'
+    changed_when:
+      - '"nice" not in yourvariable.stdout'
+
+  - name: lookup
+    debug:
+      msg: "{{ lookup('pipe', 'date') }}, {{ lookup('pipe', 'whoami') }}"
+
+  - name: lookup
+    debug:
+      msg: "{{ lookup('url', 'http://mgmt2.muszynski.pro:5888') }}"
+    register: curlresult
+
+  - name: print curlresult
+    debug:
+      msg: "{{ curlresult }}"
+
+  - name: assert business logic
+    assert:
+      that:
+        - '"szkolenieOK" in curlresult.msg'
+        - '"weather is nice" in yourvariable.stdout'
+
+  - command: /usr/bin/false
+    retries: 3
+    delay: 3
+    register: result
+    until: result.rc == 0
+    #ignore_errors: yes
+    #failed_when: false
+
+#async
+

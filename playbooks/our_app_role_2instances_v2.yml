@@ -1,0 +1,17 @@
+- hosts: naszaaplikacja
+  become: true
+
+  roles:
+    - app_naszaaplikacja_odpowiedz
+
+- hosts: naszaaplikacja
+  become: true
+
+  vars:
+    web_dir: /var/www/szkolenie.pl5082
+    app_dir: "{{ web_dir }}/aplikacja"
+    log_dir: "{{ web_dir }}/logs"
+    port: 5082
+
+  roles:
+    - app_naszaaplikacja_odpowiedz

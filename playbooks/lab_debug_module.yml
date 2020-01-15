@@ -2,7 +2,7 @@
 - hosts: apache
 
   vars:
-      vars_files_var: ["vars/szkolenie.yml", "vars/szkolenie_vault.yml"]
+      vars_files_var: ["vars/training.yml", "vars/training_vault.yml"]
 
   pre_tasks:
       - include_vars: "{{ item }}"
