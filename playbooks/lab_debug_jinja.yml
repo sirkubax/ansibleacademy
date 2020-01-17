@@ -12,7 +12,7 @@
     - name: "show time"
       shell: date
 
-  #please examint the dictionary - output of known facts from sys_debug 
+  #please examin output of known facts from sys_debug (look for ansible_ipv4)
 
   roles:
     - sys_debug

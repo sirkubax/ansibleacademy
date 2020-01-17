@@ -1,0 +1,18 @@
+
+- hosts: all
+
+  tasks: 
+  - ping:
+
+  - name: "execute module shell"
+     shell: date; whoami
+
+  - name: "create directory"
+    file:
+      state: directory
+      mode: 0754
+    path: "~/training_roles{{ kimjestem }}"
+    vars:
+      kimjestem: "{{ lookup('pipe', 'whoami') }}"
+
+

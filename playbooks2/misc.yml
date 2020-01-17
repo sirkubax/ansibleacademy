@@ -4,16 +4,18 @@
   tasks:
   - name: write that the weather is good
     shell: echo 'weather is good'
-    register: yourvar
 
   - name: confirmed
     shell: echo 'yes it is ok'
-    when:
-      - '"is good" in yourvar.stdout'
-    changed_when:
-      - '"good" not in yourvar.stdout'
 
 #  - name: print current time/date
-#
+
 #  - name: curl http://mgmt2.muszynski.pro:5888
 
+#  - command: /usr/bin/false
+#    retries: 3
+#    delay: 3
+#    register: result
+#    until: result.rc == 0
+#    #ignore_errors: yes
+#    #failed_when: false
