@@ -20,6 +20,14 @@
     - debug:
         mesg: "1234"
 
+    - name: Remove duplicate lines    
+      replace:                        
+        path: /etc/apache2/ports.conf 
+        regexp: '^Listen 80$'         
+        replace: ''                   
+      become: True                    
+      ignore_errors: true             
+
   roles:
     - some_role
    #- { role: sys_init_common, become: True, when: "inventory_hostname == groups['apache'][0]" }
