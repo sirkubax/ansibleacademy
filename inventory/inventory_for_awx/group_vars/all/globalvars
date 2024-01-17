@@ -1,0 +1,6 @@
+#interesting_variable: 'Im defined as a group all - global'
+some_global_variable: 'content'
+
+ansible_connection: ssh
+#ansible_ssh_private_key_file: "~/.ssh/id_rsa_szkolenie"
+ansible_ssh_user: ubuntu
