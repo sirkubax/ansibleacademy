@@ -1,7 +1,0 @@
-some_global_variable: 'content'
-
-pip_proxy: 1.2.3.4:8012
-
-ansible_connection: ssh
-ansible_ssh_private_key_file: "~/.ssh/id_rsa_szkolenie"
-ansible_ssh_user: ubuntu

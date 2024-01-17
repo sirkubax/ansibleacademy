@@ -1,22 +1,11 @@
-- hosts: our_app
+####
+#port 5082 ports.conf apache
 
-  become: true
-
-  #variables usefull for templating apache and app
-  vars:
-    web_dir: /var/www/szkolenie.pl
-    app_dir: "{{ web_dir }}/aplikacja"
-    log_dir: "{{ web_dir }}/logs"
-    port: 5081
-
-  pre_tasks: []
-
-  tasks:
     - name: 'install apache2, libapache2-mod-wsgi'
       apt: 
         pkg:
           - apache2
-          - libapache2-mod-wsgi-py3
+          - libapache2-mod-wsgi-py3 #python3
       tags:
         - first_tag
 

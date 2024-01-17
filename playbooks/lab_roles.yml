@@ -10,12 +10,15 @@
     vars_files_var: ["vars/training.yml", "vars/training_vault.yml"]
 
   pre_tasks:
-    - include_vars: "{{ item }}"
+    - inclue_vars: "{{ item }}"
       with_items: "{{ vars_files_var }}"
 
   tasks:
     - name: "show time"
       shell: date
+
+    - debug:
+        mesg: "1234"
 
   roles:
     - some_role
