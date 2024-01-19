@@ -5,3 +5,6 @@
 
   - name: "execute module shell"
     shell: date; whoami
+
+  - debug: 
+      msg: 'new message from playbook'

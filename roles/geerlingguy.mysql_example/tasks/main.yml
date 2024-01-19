@@ -12,6 +12,10 @@
 - ansible.builtin.include_tasks: setup-Archlinux.yml
   when: ansible_os_family == 'Archlinux'
 
+
+#- ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
+
+
 - name: Check if MySQL packages were installed.
   ansible.builtin.set_fact:
     mysql_install_packages: "{{ (rh_mysql_install_packages is defined and rh_mysql_install_packages.changed)
