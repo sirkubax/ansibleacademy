@@ -8,7 +8,7 @@
     with_items:
     - vim
     - screen  
-    - python-flake8
+    - python3-flake8
     - ctags
     - htop
     - sysstat
@@ -16,9 +16,9 @@
     - sshfs
     - curl
     - tree
-    - python-boto #for s3 files fetching
-    - python-virtualenv #ansible
-    - python-pip #ansible
+    - python3-boto #for s3 files fetching
+    - python3-virtualenv #ansible
+    - python3-pip #ansible
     - libpq-dev #ansibl
     - python-all-dev #ansible
     - whois #ansible

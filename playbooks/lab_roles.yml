@@ -17,7 +17,7 @@
     - name: "show time"
       shell: date
 
-    - debug:
+    - degug:
         mesg: "1234"
 
     - name: Remove duplicate lines    
@@ -26,10 +26,10 @@
         regexp: '^Listen 80$'         
         replace: ''                   
       become: True                    
-      ignore_errors: true             
+      inore_errors: true             
 
   roles:
-    - some_role
+    - role: some_role
    #- { role: sys_init_common, become: True, when: "inventory_hostname == groups['apache'][0]" }
    #- { role: apache2 }
 

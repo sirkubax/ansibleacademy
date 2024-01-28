@@ -8,3 +8,7 @@
 
   - debug: 
       msg: 'new message from playbook'
+
+  - assert:
+      that:
+        - true
