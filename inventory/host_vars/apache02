@@ -1,2 +1,2 @@
-#interesting_variable: 'Im defined only for a host, override other'
+interesting_variable: 'Im defined only for a host, override other'
 ansible_host: 3.8.77.169
