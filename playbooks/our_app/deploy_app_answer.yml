@@ -26,7 +26,7 @@
       loop:
         - apache2
         - libapache2-mod-wsgi-py3 #python3
-        - python-dev
+        - python3-dev
 
     - git:
         repo: https://github.com/sirkubax/flask-app.git

@@ -7,7 +7,7 @@
 ## Used for debugging/timing stuff.
 ##
 #
-- local_action: shell date +'%F %T'
+- shell: date +'%F %T'
   register: ts
   become: False
   changed_when: False

@@ -9,7 +9,7 @@
     - vim
     - screen  
     - python3-flake8
-    - ctags
+    - universal-ctags
     - htop
     - sysstat
     - git
@@ -20,7 +20,7 @@
     - python3-virtualenv #ansible
     - python3-pip #ansible
     - libpq-dev #ansibl
-    - python-all-dev #ansible
+    - python3-all-dev #ansible
     - whois #ansible
     - libffi-dev #ansible
     - unzip

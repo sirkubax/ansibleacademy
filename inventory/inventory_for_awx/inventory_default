@@ -4,16 +4,16 @@ location=london
 
 #apache group
 [apache]
-18.197.142.56
-apache02 ansible_ssh_host=10.238.0.180
-ec2-3-76-81-204.eu-central-1.compute.amazonaws.com
+35.159.71.38
+apache02 ansible_ssh_host=10.238.0.59
+ec2-3-121-225-36.eu-central-1.compute.amazonaws.com
 10.238.0.240
 
 [backend]
-10.238.0.15 varA=1234 var3=ddddd
+10.238.0.39 varA=1234 var3=ddddd
 
 [db]
-10.238.0.174
+10.238.0.15
 
 
 [prod:children]

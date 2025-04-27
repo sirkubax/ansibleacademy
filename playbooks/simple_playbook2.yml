@@ -1,0 +1,24 @@
+- hosts: apache
+
+  vars:
+    my_var: 'some_string'
+    environment: dev
+
+  tasks: 
+  - name: check hosts with a ping module
+    ansible.builtin.ping:
+
+  - name: create temporary directory for log
+    ansible.builtin.file:
+      path: /tmp/our_logs
+      state: directory
+
+  - name: "execute module shell"
+    ansible.builtin.shell: date >> /tmp/our_logs/log.txt
+
+  - ansible.builtin.debug: 
+      msg: 'print this message from playbook'
+
+  - ansible.builtin.assert:
+      that:
+        - true
