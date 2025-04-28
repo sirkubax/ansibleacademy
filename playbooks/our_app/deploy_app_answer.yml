@@ -42,7 +42,7 @@
     - name: 'deploy virtualhost our_app.apache.conf as a template'
       template:
           src: our_app.apache.conf
-          dest: /etc/apache2/sites-available/
+          dest: "/etc/apache2/sites-available/our_app.apache.{{ port }}.conf"
           backup: True
 
     - name: 'deploy our_app.wsgi as a template'
@@ -56,7 +56,7 @@
       args:
         creates: /etc/apache2/sites-enabled/{{ item }}
       loop: 
-        - our_app.apache.conf
+        - "our_app.apache.{{ port }}.conf"
 
     - name: 'configure apache to listen on proper port'
       lineinfile: 
