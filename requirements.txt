@@ -2,4 +2,4 @@ ansible
 boto
 boto3
 yamllint
-sshpass
+pysshpass
