@@ -51,34 +51,34 @@ db
 
 
 
-[windows_winrm]
-#aws-win-host
-#4.9.147.205
-#ec2-18-134-150-153.eu-west-2.compute.amazonaws.com
-ec2-63-176-164-204.eu-central-1.compute.amazonaws.com
-
-[windows_winrm:vars]
-ansible_connection=winrm
-ansible_port=5986
-
-ansible_user=Administrator
-#ansible_password=myTempPassword123!
-ansible_password='{{ win_rm_pass_kuba }}'
-ansible_winrm_server_cert_validation=ignore
-ansible_winrm_transport=basic
-
-
-
-[windows_ssh]
-#aws-win-host
-#4.9.147.205
-#ec2-18-134-150-153.eu-west-2.compute.amazonaws.com
-ec2-35-156-118-246.eu-central-1.compute.amazonaws.com
-
-[windows_ssh:vars]
-ansible_connection=ssh
-
-ansible_shell_type=cmd
-
-ansible_user=Administrator
-ansible_password='{{ win_ssh_pass_kuba }}'
+#[windows_winrm]
+##aws-win-host
+##4.9.147.205
+##ec2-18-134-150-153.eu-west-2.compute.amazonaws.com
+#ec2-63-176-164-204.eu-central-1.compute.amazonaws.com
+#
+#[windows_winrm:vars]
+#ansible_connection=winrm
+#ansible_port=5986
+#
+#ansible_user=Administrator
+##ansible_password=myTempPassword123!
+#ansible_password='{{ win_rm_pass_kuba }}'
+#ansible_winrm_server_cert_validation=ignore
+#ansible_winrm_transport=basic
+#
+#
+#
+#[windows_ssh]
+##aws-win-host
+##4.9.147.205
+##ec2-18-134-150-153.eu-west-2.compute.amazonaws.com
+#ec2-35-156-118-246.eu-central-1.compute.amazonaws.com
+#
+#[windows_ssh:vars]
+#ansible_connection=ssh
+#
+#ansible_shell_type=cmd
+#
+#ansible_user=Administrator
+#ansible_password='{{ win_ssh_pass_kuba }}'
